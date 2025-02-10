@@ -62,6 +62,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '957429577196',
     projectId: 'flutter-cli-fire-1795a',
     storageBucket: 'flutter-cli-fire-1795a.firebasestorage.app',
+
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
