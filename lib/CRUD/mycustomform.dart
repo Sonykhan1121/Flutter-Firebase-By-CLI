@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cli_firebase/CRUD/readdata.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -58,7 +59,46 @@ class _MyCustomFormState extends State<MyCustomForm> {
 
 
   }
+  Future<String> _searchUser(String firstName) async {
+    String id = "";
+     // Trim input to remove any extra spaces.
 
+    if (firstName.isEmpty) {
+      Fluttertoast.showToast(msg: "Please enter a first name");
+      return id;
+    }
+
+    try {
+      QuerySnapshot querySnapshot = await DatabaseMethods().getthisUserInfo(firstName);
+      if (querySnapshot.docs.isNotEmpty) {
+        String id = querySnapshot.docs.first.id;
+        return id;
+      } else {
+        Fluttertoast.showToast(msg: "No user found with that name",backgroundColor: Colors.red,textColor: Colors.yellow);
+
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: "Failed to fetch data: ${e.toString()}");
+
+    }
+    return id;
+  }
+  void _updateData() async {
+    Map<String, dynamic> uploadData = {
+      "firstName": _firstNametextcontroller.text,
+      "lastName": _lastNametextcontroller.text,
+      "age": _agetextcontroller.text,
+      "image": _image!.path,
+    };
+    String id = await _searchUser(_firstNametextcontroller.text);
+    DatabaseMethods().updateUserData(_firstNametextcontroller.text,_lastNametextcontroller.text,_agetextcontroller.text,id,_image!.path);
+    Fluttertoast.showToast(
+        msg: "Data Updated Successfully",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,  );
+
+  }
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -168,6 +208,23 @@ class _MyCustomFormState extends State<MyCustomForm> {
                         padding: EdgeInsets.symmetric(vertical: 15),// 'primary' is used for background color
                       ),
                     )
+
+                  ),
+                  SizedBox(width: 15,),
+                  Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+
+                            _updateData();
+
+                        },
+                        child: Text('Update'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                          foregroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(vertical: 15),// 'primary' is used for background color
+                        ),
+                      )
 
                   ),
                   SizedBox(width: 15,),

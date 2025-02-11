@@ -14,12 +14,12 @@ class DatabaseMethods {
         .get();
 
   }
-  Future updateUserData(String fName , String lName ,String age, String id) async
+  Future updateUserData(String fName , String lName ,String age, String id,String image) async
   {
     return await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
-        .update({"firstName":fName,"lastName":lName,"age":age});
+        .update({"firstName":fName,"lastName":lName,"age":age,"image":image});
   }
   Future DeleteUserData(String id) async {
     return await FirebaseFirestore.instance
