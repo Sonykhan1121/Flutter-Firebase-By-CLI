@@ -14,4 +14,18 @@ class DatabaseMethods {
         .get();
 
   }
+  Future updateUserData(String fName , String lName ,String age, String id) async
+  {
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update({"firstName":fName,"lastName":lName,"age":age});
+  }
+  Future DeleteUserData(String id) async {
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .delete();
+
+  }
 }
