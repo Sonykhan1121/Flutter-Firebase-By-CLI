@@ -11,3 +11,7 @@ A new Flutter project.
 ## after sign up
 
 ![Image](https://github.com/user-attachments/assets/dfa0d95b-1fad-454b-962e-7c1f15ee0d6c)
+
+## After Showing Data
+
+![Image](https://github.com/user-attachments/assets/050f70ce-fdff-4fa3-9695-f1acfe94d285)
