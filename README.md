@@ -12,6 +12,10 @@ A new Flutter project.
 
 ![Image](https://github.com/user-attachments/assets/dfa0d95b-1fad-454b-962e-7c1f15ee0d6c)
 
+## Adding data to database
+
+![image](https://github.com/user-attachments/assets/4463f3fa-f8c2-4e41-aa4b-886ed9e09c4c)
+
 ## After Showing Data
 
 ![Image](https://github.com/user-attachments/assets/050f70ce-fdff-4fa3-9695-f1acfe94d285)
